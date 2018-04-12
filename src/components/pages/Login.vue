@@ -2,7 +2,7 @@
  * @Author: jeay
  * @Date: 2018-04-10 13:47:15
  * @Last Modified by: jeay
- * @Last Modified time: 2018-04-11 17:26:47
+ * @Last Modified time: 2018-04-12 08:44:31
  */
 <template>
   <div class="login">
@@ -56,9 +56,7 @@ export default {
       this.$refs[formName].validate(async (valid) => {
         if (valid) {
           let msg = await axios.post('/login', qs.stringify({username: this.ruleForm.name, password: this.ruleForm.passwd}))
-          if (msg.data.error) {
-            console.log('账户或密码错误')
-          } else {
+          if (!msg.data.error) {
             Message.success({message: '登陆成功'})
             localStorage.setItem('access_token', msg.data.access_token)
             localStorage.setItem('expires_time', msg.data.time)
