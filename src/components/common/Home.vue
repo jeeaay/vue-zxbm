@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     handleSelect (key) {
+      this.activeIndex = key
       sessionStorage.setItem('activeIndex', key)
     }
   }
