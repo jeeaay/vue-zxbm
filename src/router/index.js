@@ -4,6 +4,7 @@ import Login from '@/components/pages/Login'
 import Home from '@/components/common/Home'
 import Index from '@/components/pages/Index'
 import User from '@/components/pages/User'
+import Notfound from '@/components/pages/Notfound'
 
 Vue.use(Router)
 
@@ -12,7 +13,7 @@ let router = new Router({
     {
       path: '/',
       name: 'Login',
-      meta: { title: '请登录！' },
+      meta: { title: '欢迎登录-黎明重工在线报名系统管理后台' },
       component: Login
     },
     /*
@@ -21,15 +22,12 @@ let router = new Router({
       name: 'SignIn',
       meta: {title: '注册用户'},
       component: SignIn
-    },
-    {
-      path: '/repository',
-      name: 'repository',
-      meta: {
-        requireAuth: true
-      },
-      component: [Login, SignIn]
     }, */
+    {
+      path: '*',
+      name: '404',
+      component: Notfound
+    },
     {
       path: '/admin',
       component: Home,
@@ -37,14 +35,14 @@ let router = new Router({
         requireAuth: true
       },
       children: [
-        { path: '/', component: Index, name: '首页', meta: { title: '案例采集后台管理' } },
-        { path: 'user', component: User, name: '用户管理', meta: { title: '用户管理' } }
+        { path: '/', component: Index, name: 'index', meta: { title: '报名信息-黎明重工在线报名系统管理后台' } },
+        { path: 'user', component: User, name: 'user', meta: { title: '用户管理-黎明重工在线报名系统管理后台' } }
       ]
     }
   ]
 })
 
-/* router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   let token = localStorage.getItem('access_token')
   let nowTime = new Date()
   if (to.matched.some(r => r.meta.requireAuth)) {
@@ -52,10 +50,7 @@ let router = new Router({
       next()
     } else {
       localStorage.clear()
-      next({
-        path: '/',
-        query: { redirect: to.fullPath }
-      })
+      next({path: '/'})
     }
   } else {
     next()
@@ -64,6 +59,6 @@ let router = new Router({
     document.title = to.meta.title
   }
   next()
-}) */
+})
 
 export default router
