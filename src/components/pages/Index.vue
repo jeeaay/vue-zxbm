@@ -2,7 +2,7 @@
  * @Author: jeay
  * @Date: 2018-04-10 13:47:15
  * @Last Modified by: jeay
- * @Last Modified time: 2018-04-11 17:55:42
+ * @Last Modified time: 2018-04-15 11:05:47
  */
 <template>
   <div class="list">
@@ -32,11 +32,11 @@
       </el-table-column>
       <el-table-column
         prop="department"
-        label="院系">
+        label="院系/班级">
       </el-table-column>
       <el-table-column
         prop="grade"
-        label="班级">
+        label="其他联系人">
       </el-table-column>
       <el-table-column
         label="操作"
@@ -106,6 +106,7 @@ export default {
       if (!msg.data.error) {
         Message.success({message: rows[index].name + '提交的消息已经删除成功'})
         rows.splice(index, 1)
+        this.totalMsg--
       }
     }
   }
