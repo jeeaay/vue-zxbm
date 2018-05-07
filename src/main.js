@@ -16,7 +16,7 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Dialog)
 
-axios.defaults.baseURL = 'https://zxbm.lmzg.com//v1/'
+axios.defaults.baseURL = 'https://zxbm.lmzg.com/v1/'
 // axios.defaults.baseURL = 'http://lmapi.com/v1/'
 // http response 拦截器
 axios.interceptors.response.use(
